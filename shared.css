@@ -265,7 +265,9 @@ body {
   font-weight:   700;
   margin-bottom: 36px;
 }
-
+.page-section.aanbod{
+	display:none; /*maakt de 3 blokjes op pagina aanbod (tijdelijk) onzichtbaar*/
+}
 
 /* ============================================================
    TWO-COLUMN LAYOUT  — text left, image right

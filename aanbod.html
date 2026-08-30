@@ -8,32 +8,6 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="shared.css" />
   <title>drakenziel - Jolien Versin</title>
-  <style>
-    /* Hero fills the full screen height */
-    .section-hero {
-      min-height:     100vh;
-      display:        flex;
-      align-items:    center;
-      padding-top:    calc(var(--nav-height) + 48px);
-      padding-bottom: 80px;
-    }
-    .hero__title {
-      font-size:      clamp(40px, 6vw, 68px);
-      font-weight:    800;
-      line-height:    1.1;
-      letter-spacing: -1.5px;
-      margin-bottom:  20px;
-    }
-    .hero__title em { font-style: italic; color: var(--color-accent); }
-    .hero__text {
-      font-size:     17px;
-      font-weight:   300;
-      color:         var(--color-text-soft);
-      max-width:     500px;
-      line-height:   1.8;
-      margin-bottom: 32px;
-    }
-  </style>
 </head>
 <body>
   <nav class="navbar" id="navbar">
@@ -61,16 +35,32 @@
     <a href="contact.html" class="btn btn-primary">neem contact op</a>
   </div>
   <main>
-    <section class="section-hero">
+    <div class="page-header">
       <div class="container">
-        <span class="eyebrow">welkom</span>
-        <h1 class="hero__title">we werken vanuit<br /><em>verbinding en zachtheid.</em></h1>
-        <p class="hero__text">
-          Een plek waar je systeem mag vertragen, je lichaam weer mee mag spreken en je energie terug richting krijgt.
-        </p>
-        <div class="btn-group">
-          <a href="aanbod.html" class="btn btn-primary">mijn aanbod</a>
-          <a href="overmij.html"    class="btn btn-outline">over drakenziel & mij</a>
+        <span class="eyebrow">mijn aanbod</span>
+        <h1>energetische heling</h1>
+        <p>Ik werk achter de schermen aan deze pagina. Binnenkort vind je hier meer informatie.</p>
+      </div>
+    </div>
+	<!-- /* blokjes voor verschil in aanbod worden later de reviews*/ -->
+    <section class="page-section aanbod">
+      <div class="container">
+        <div class="card-grid">
+          <div class="card">
+            <h3>Service One</h3>
+            <p>Describe this service here. Who is it for and what problem does it solve?</p>
+            <div class="btn-group"><a href="contact.html" class="btn btn-outline">Get started</a></div>
+          </div>
+          <div class="card">
+            <h3>Service Two</h3>
+            <p>Describe this service here. Who is it for and what problem does it solve?</p>
+            <div class="btn-group"><a href="contact.html" class="btn btn-outline">Get started</a></div>
+          </div>
+          <div class="card">
+            <h3>Service Three</h3>
+            <p>Describe this service here. Who is it for and what problem does it solve?</p>
+            <div class="btn-group"><a href="contact.html" class="btn btn-outline">Get started</a></div>
+          </div>
         </div>
       </div>
     </section>
