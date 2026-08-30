@@ -1,0 +1,424 @@
+/* ============================================================
+   shared.css  — styles used by ALL pages in this layout.
+   Link this file in every page's <head>.
+
+   To change the whole site's look, only edit the :root block
+   at the top. You should not need to touch anything else.
+============================================================ */
+
+
+/* ============================================================
+   DESIGN TOKENS  — colors, fonts, and sizes in one place
+============================================================ */
+:root {
+  /* Colors */
+  --color-bg:        #f9f8f5;   /* page background */
+  --color-white:     #ffffff;   /* card / navbar background */
+  --color-border:    #e5e2db;   /* lines and outlines */
+  --color-text:      #1a1917;   /* main readable text */
+  --color-text-soft: #7a776f;   /* secondary / muted text */
+  --color-accent:    #0f5132;   /* green — buttons and highlights */
+
+  /* Font — system fonts, works offline on every device */
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+
+  /* Layout */
+  --nav-height: 64px;
+  --max-width:  1080px;
+  --radius:     10px;
+}
+
+
+/* ============================================================
+   RESET  — remove browser default spacing
+============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin:     0;
+  padding:    0;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background:  var(--color-bg);
+  color:       var(--color-text);
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   UTILITY HELPERS
+============================================================ */
+
+/* Wraps content and keeps it centered with a max width */
+.container {
+  width:     100%;
+  max-width: var(--max-width);
+  margin:    0 auto;
+  padding:   0 28px;
+}
+
+/* Small uppercase label shown above section headings */
+.eyebrow {
+  display:        block;
+  font-size:      11px;
+  font-weight:    600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color:          var(--color-accent);
+  margin-bottom:  12px;
+}
+
+/* Buttons */
+.btn {
+  display:         inline-block;
+  padding:         11px 24px;
+  font-family:     var(--font);
+  font-size:       14px;
+  font-weight:     500;
+  border-radius:   6px;
+  text-decoration: none;
+  border:          none;
+  cursor:          pointer;
+  transition:      opacity 0.15s, transform 0.1s;
+}
+.btn:hover  { opacity: 0.85; }
+.btn:active { transform: scale(0.97); }
+
+.btn-primary { background: var(--color-accent); color: #ffffff; }
+
+.btn-outline {
+  background: transparent;
+  color:      var(--color-text);
+  border:     1.5px solid var(--color-border);
+}
+.btn-outline:hover { border-color: var(--color-text-soft); }
+
+/* Row of two buttons side by side */
+.btn-group {
+  display:    flex;
+  gap:        12px;
+  flex-wrap:  wrap;
+  margin-top: 24px;
+}
+
+
+/* ============================================================
+   NAVBAR  — fixed bar at the top of every page
+============================================================ */
+.navbar {
+  position:      fixed;
+  top:  0;
+  left: 0;
+  right: 0;
+  z-index:       100;
+  height:        var(--nav-height);
+  background:    var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  transition:    box-shadow 0.2s;
+}
+
+/* JavaScript adds this class when the user scrolls down */
+.navbar.is-scrolled { box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07); }
+
+.navbar__inner {
+  height:          100%;
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+}
+
+.navbar__logo {
+  font-size:       20px;
+  font-weight:     700;
+  color:           var(--color-text);
+  text-decoration: none;
+}
+.navbar__logo span { color: var(--color-accent); }
+
+/* Desktop navigation links */
+.navbar__links {
+  display:     flex;
+  align-items: center;
+  gap:         32px;
+  list-style:  none;
+}
+.navbar__links a {
+  font-size:       14px;
+  font-weight:     500;
+  color:           var(--color-text-soft);
+  text-decoration: none;
+  padding-bottom:  2px;
+  border-bottom:   2px solid transparent;
+  transition:      color 0.15s, border-color 0.15s;
+}
+.navbar__links a:hover     { color: var(--color-text); }
+.navbar__links a.is-active {
+  color:        var(--color-text);
+  border-color: var(--color-accent);
+}
+
+/* Hamburger button — only visible on mobile screens */
+.hamburger {
+  display:        none;
+  flex-direction: column;
+  gap:            5px;
+  background:     transparent;
+  border:         none;
+  cursor:         pointer;
+  padding:        4px;
+}
+.hamburger span {
+  display:          block;
+  width:            22px;
+  height:           2px;
+  background:       var(--color-text);
+  border-radius:    2px;
+  transition:       transform 0.25s, opacity 0.2s;
+  transform-origin: center;
+}
+/* The three bars rotate into an X when the menu is open */
+.hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile dropdown — hidden by default, shown by JavaScript */
+.mobile-menu {
+  display:       none;
+  position:      fixed;
+  top:           var(--nav-height);
+  left:  0;
+  right: 0;
+  background:    var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  z-index:       99;
+}
+.mobile-menu a {
+  display:         block;
+  padding:         14px 28px;
+  font-size:       15px;
+  font-weight:     500;
+  color:           var(--color-text-soft);
+  text-decoration: none;
+}
+.mobile-menu a:hover     { color: var(--color-text); }
+.mobile-menu a.is-active { color: var(--color-text); }
+.mobile-menu .btn        { display: block; margin: 12px 28px 20px; text-align: center; }
+
+
+/* ============================================================
+   PAGE HEADER BANNER
+   The white band with a title at the top of inner pages.
+============================================================ */
+.page-header {
+  padding-top:    calc(var(--nav-height) + 56px);
+  padding-bottom: 56px;
+  background:     var(--color-white);
+  border-bottom:  1px solid var(--color-border);
+}
+.page-header h1 {
+  font-size:     clamp(28px, 4.5vw, 48px);
+  font-weight:   700;
+  line-height:   1.15;
+  margin-bottom: 12px;
+}
+.page-header p {
+  font-size:   16px;
+  font-weight: 300;
+  color:       var(--color-text-soft);
+  max-width:   520px;
+  line-height: 1.75;
+}
+.page-header .two-col {
+	display:flex;
+	gap:48px;
+	align-items:flex-start;
+}
+.page-header .image-placeholder {
+  max-width: 480px;
+  width: 80%;
+}
+
+.page-header {
+  padding-bottom: 30px; /* extra ademruimte */
+}
+.rechts{
+	float:right;
+	max-width:360px;
+	width:100%;
+}
+
+/* ============================================================
+   CONTENT SECTIONS
+============================================================ */
+.page-section { padding: 72px 0; }
+.page-section p {
+  margin-bottom: 14px; /* of 24px, 28px, afhankelijk van wat mooi voelt */
+}
+
+/* A line divides consecutive sections */
+.page-section + .page-section { border-top: 1px solid var(--color-border); }
+
+.section-heading {
+  font-size:     clamp(24px, 3.5vw, 36px);
+  font-weight:   700;
+  margin-bottom: 36px;
+}
+
+
+/* ============================================================
+   TWO-COLUMN LAYOUT  — text left, image right
+============================================================ */
+.two-col {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   56px;
+  align-items:           center;
+}
+.two-col p {
+  font-size:   15px;
+  font-weight: 300;
+  color:       var(--color-text-soft);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* Gray box — replace with a real <img src="..." alt="..."> */
+.image-placeholder {
+  background:      var(--color-border);
+  border-radius:   var(--radius);
+  aspect-ratio:    4 / 3;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  font-size:       13px;
+  color:           var(--color-text-soft);
+}
+
+
+/* ============================================================
+   THREE-COLUMN CARD GRID
+============================================================ */
+.card-grid {
+  display:               grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:                   20px;
+}
+
+.card {
+  background:    var(--color-white);
+  border:        1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding:       28px 24px;
+  transition:    border-color 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  border-color: var(--color-accent);
+  box-shadow:   0 4px 20px rgba(0, 0, 0, 0.07);
+}
+.card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.card p  {
+	font-size: 14px;
+	font-weight: 300;
+	color: var(--color-text-soft);
+	line-height: 1.7;
+	margin-bottom:0;
+}
+.card ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.card p.thight {
+  margin-bottom: 0;
+  margin-top:5px;
+}
+.card ul li {
+  font-size:15px;
+  font-weight:300;
+  line-heigt:1.7;
+  margin: 0; /* geen extra witruimte */
+  line-height: 1.5; /* zachte leesbaarheid */
+  color:var(--color-text-soft);
+}
+.card ul li::before {
+  content: "•";
+  margin-right: 6px;
+  color: var(--color-text-soft);
+}
+css
+/* ================================
+   COMPACT LIST (voor kaarten)
+=================================== */
+
+.card ul.compact-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0; /* geen extra ruimte boven/onder */
+}
+
+.card ul.compact-list li {
+  margin: 0; /* geen witruimte tussen regels */
+  line-height: 1.5; /* zachte leesbaarheid */
+  font-size: 15px; /* matcht met .card p */
+  font-weight: 300;
+  color: var(--color-text-soft);
+}
+.card ul.compact-list li::before {
+  content: "•";
+  margin-right: 6px;
+  color: var(--color-text-soft);
+  font-size: 15px; /* zelfde grootte als tekst */
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer { background: var(--color-text); color: #ffffff; padding: 48px 0 28px; }
+
+.footer__top {
+  display:               grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap:                   48px;
+  padding-bottom:        40px;
+  border-bottom:         1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer__logo    { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.footer__logo span { color: var(--color-accent); }
+.footer__tagline { font-size: 14px; color: rgba(255, 255, 255, 0.4); line-height: 1.6; }
+.footer__col-title {
+  font-size:      11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255, 255, 255, 0.35); margin-bottom: 14px;
+}
+.footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer__links a { font-size: 14px; color: rgba(255, 255, 255, 0.55); text-decoration: none; transition: color 0.15s; }
+.footer__links a:hover { color: #ffffff; }
+
+.footer__bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 24px; flex-wrap: wrap; gap: 10px;
+}
+.footer__copyright { font-size: 13px; color: rgba(255, 255, 255, 0.3); }
+
+
+/* ============================================================
+   RESPONSIVE  — adjustments for smaller screens
+============================================================ */
+@media (max-width: 768px) {
+  /* Swap desktop nav for hamburger */
+  .navbar__links, .navbar__cta { display: none; }
+  .hamburger { display: flex; }
+
+  /* Single-column on tablet */
+  .two-col   { grid-template-columns: 1fr; gap: 32px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .footer__top { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 20px; }
+  .btn-group { flex-direction: column; }
+  .btn-group .btn { text-align: center; }
+}
